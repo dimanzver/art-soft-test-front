@@ -1,0 +1,28 @@
+<form action="" method="post" [formGroup]="form" (ngSubmit)="submit()">
+  <label class="form-group d-block">
+    <textarea name="body"
+              rows="5"
+              class="form-control"
+              placeholder="Текст комментария"
+              formControlName="body"
+    ></textarea>
+  </label>
+  <div class="alert alert-danger"
+       *ngIf="form.controls['body'].invalid && form.controls['body'].touched">
+      Введите текст комментария
+  </div>
+
+  <label class="form-group d-block">
+    <input name="author_name"
+           type="text"
+           class="form-control"
+           placeholder="Ваше имя"
+           formControlName="author_name">
+  </label>
+  <div class="alert alert-danger"
+       *ngIf="form.controls['author_name'].invalid && form.controls['author_name'].touched">
+      Введите ваше имя
+  </div>
+
+  <button class="btn btn-success" [disabled]="form.invalid">Отправить</button>
+</form>

@@ -1,0 +1,21 @@
+<div class="comment">
+  <div class="card mt-1 mb-1">
+    <div class="card-header comment__header">
+      <div class="comment__author">{{comment.author_name}}</div>
+      <div class="comment__datetime">{{formattedDateTime}}</div>
+    </div>
+    <div class="card-body">
+      <div class="comment__body"><pre class="comment__text">{{comment.body}}</pre></div>
+      <button class="btn btn-link comment__reply-toggle" *ngIf="!showReplyForm" (click)="showReplyForm = !showReplyForm">Ответить</button>
+
+      <div class="comment__reply" *ngIf="showReplyForm">
+        <button class="btn btn-link comment__reply-toggle" (click)="showReplyForm = !showReplyForm">Отмена</button>
+        <app-comment-form [parentId]="comment.id"
+                          [topicId]="comment.topic_id"
+                          (createdComment)="bindCommentAdded($event)"
+        ></app-comment-form>
+      </div>
+    </div>
+  </div>
+  <div class="comment__children"><app-comments-list [comments]="comment.children"></app-comments-list></div>
+</div>

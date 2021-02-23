@@ -1,0 +1,7 @@
+<h1 class="text-center">Список топиков</h1>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let topic of topics">
+    {{topic.title}} <a [routerLink]="'/topic/' + topic.id + '/comments'">Перейти к комментариям</a>
+  </li>
+</ul>

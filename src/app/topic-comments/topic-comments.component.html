@@ -1,0 +1,18 @@
+<a routerLink="/" class="btn btn-primary">К списку топиков</a>
+
+<h1 class="text-center">Топик #{{topicId}} - комментарии</h1>
+
+<button class="btn btn-link comment__reply-toggle"
+        *ngIf="!showCommentForm"
+        (click)="showCommentForm = !showCommentForm"
+>Оставить комментарий</button>
+
+<div class="comment__reply" *ngIf="showCommentForm">
+  <button class="btn btn-link comment__reply-toggle" (click)="showCommentForm = !showCommentForm">Отмена</button>
+  <app-comment-form [topicId]="topicId"
+                    (createdComment)="bindCommentAdded($event)"
+  ></app-comment-form>
+</div>
+
+<app-comments-list [comments]="comments"></app-comments-list>
+<p class="text-center" *ngIf="!comments.length">У данного топика пока нет комментариев</p>
